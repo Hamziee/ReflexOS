@@ -4,8 +4,6 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 	Exit
 }
 
-New-Itemproperty -path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects' -Name 'VisualFXSetting' -PropertyType DWord -value '3'
-Set-Itemproperty -path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects' -Name 'VisualFXSetting' -PropertyType DWord -value '3'
 Rename-Computer -NewName "ReflexOS" -Force
 
 Install-Module -Name WindowsOEMinformation
