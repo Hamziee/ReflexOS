@@ -50,8 +50,8 @@ Pre-installed applications and other insignificant components are removed with R
 Check out what else we have removed in our [FAQ](https://reflexos.heo-systems.net).
 
 ### ✅ More performance
-Some tweaked systems on the internet have tweaked Windows too much, breaking compatibility for main features such as Bluetooth, Wi-Fi, and so on.
-Atlas is on the sweet point. It aims at getting more performance while maintaining a good level of compatibility.
+A few custom operating systems on the internet have made Windows incompatible with essential functionality like Bluetooth and Wi-Fi, among others.
+ReflexOS is on the sweet point. While preserving a high level of compatibility, it seeks to increase performance.
 
 Some of the many changes that we have done to improve Windows are listed below:
 - Customized power scheme (Credits: Chris Titus)
