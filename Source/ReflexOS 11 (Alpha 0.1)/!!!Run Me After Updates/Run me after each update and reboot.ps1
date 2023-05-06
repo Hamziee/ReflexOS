@@ -66,6 +66,8 @@ Copy-Item "C:\ReflexOS 11 (Alpha 0.1)\icons\User Account Pictures\*" "C:\Program
 
 'sc stop "wsearch" && sc config "wsearch" start=disabled' | cmd
 
+iwr -useb https://christitus.com/win | iex
+
 Write-Output "Press any key to reboot now"
 cmd /c 'pause>nul'
 Restart-Computer

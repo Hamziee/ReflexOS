@@ -64,4 +64,8 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name 
 
 Copy-Item "C:\ReflexOS 10 (Alpha 0.1)\icons\User Account Pictures\*" "C:\ProgramData\Microsoft\User Account Pictures\" -force
 
-echo "REBOOT NOW"
+'sc stop "wsearch" && sc config "wsearch" start=disabled' | cmd
+
+Write-Output "Press any key to reboot now"
+cmd /c 'pause>nul'
+Restart-Computer

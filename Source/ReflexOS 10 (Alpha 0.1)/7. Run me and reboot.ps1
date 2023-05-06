@@ -5,3 +5,7 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 }
 
 iwr -useb https://christitus.com/win | iex
+
+Write-Output "Press any key to reboot now"
+cmd /c 'pause>nul'
+Restart-Computer

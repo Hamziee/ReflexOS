@@ -10,7 +10,7 @@ Install-Module -Name WindowsOEMinformation
 
 $oemInfo = @{
     Manufacturer = 'ReflexOS'
-    Model = 'ReflexOS 11 (Alpha 0.1)'
+    Model = 'ReflexOS 10 (Alpha 0.1)'
     SupportUrl = 'http://reflexos.heo-systems.net/'
 }
 Set-WindowsOemInformation @oemInfo
@@ -33,7 +33,7 @@ public class Wallpaper
 "@
 Add-Type -TypeDefinition $setwallpapersrc
 
-[Wallpaper]::SetWallpaper("C:\ReflexOS 11 (Alpha 0.1)\img\ReflexOS Background.png")
+[Wallpaper]::SetWallpaper("C:\ReflexOS 10 (Alpha 0.1)\img\ReflexOS Background.png")
 
 # CSP registry path
 $RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
@@ -43,7 +43,7 @@ $LockScreenImageStatus = "LockScreenImageStatus"
 # CSP Status
 $StatusValue = "1"
 # Image to use
-$LockScreenImageValue = "C:\ReflexOS 11 (Alpha 0.1)\img\ReflexOS Lockscreen.png"  # Change as per your needs
+$LockScreenImageValue = "C:\ReflexOS 10 (Alpha 0.1)\img\ReflexOS Lockscreen.png"  # Change as per your needs
 ## Check if PersonalizationCSP registry exist and if not create it and add values, or just create the values under it.
 if(!(Test-Path $RegKeyPath)){
     New-Item -Path $RegKeyPath -Force | Out-Null
@@ -62,9 +62,11 @@ else {
 New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
 
-Copy-Item "C:\ReflexOS 11 (Alpha 0.1)\icons\User Account Pictures\*" "C:\ProgramData\Microsoft\User Account Pictures\" -force
+Copy-Item "C:\ReflexOS 10 (Alpha 0.1)\icons\User Account Pictures\*" "C:\ProgramData\Microsoft\User Account Pictures\" -force
 
 'sc stop "wsearch" && sc config "wsearch" start=disabled' | cmd
+
+iwr -useb https://christitus.com/win | iex
 
 Write-Output "Press any key to reboot now"
 cmd /c 'pause>nul'

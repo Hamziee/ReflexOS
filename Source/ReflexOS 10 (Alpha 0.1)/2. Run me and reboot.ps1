@@ -4,3 +4,7 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 	Exit
 }
 irm https://massgrave.dev/get | iex
+
+Write-Output "Press any key to reboot now"
+cmd /c 'pause>nul'
+Restart-Computer
