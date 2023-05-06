@@ -16,7 +16,7 @@
   •
   <a href="https://reflexos.heo-systems.net/docs">Documentation</a>
   •
-  <a href="https://discord.com" target="_blank">Discord</a>
+  <a href="https://discord.gg/mdx2tKxSeV" target="_blank">Discord</a>
 </p>
 
 ## 🤔 **What is ReflexOS?**
@@ -28,11 +28,11 @@ You can learn more about ReflexOS on our official [website](https://reflexos.heo
 ## 📚 **Table of contents**
 
 - Getting Started
-  - [Installation](https://reflexos.heo-systems.net/)
-  - [Post-Installation](https://reflexos.heo-systems.net/)
+  - [Installation Win10](https://reflexos.heo-systems.net/docs/ReflexOS%2010/Installation%20Guide)
+  - [Installation Win11](https://reflexos.heo-systems.net/docs/ReflexOS%2011/Installation%20Guide)
 
 - FAQ
-  - [See FAQ](https://reflexos.heo-systems.net/)
+  - [See FAQ](https://reflexos.heo-systems.net/docs/faq)
 
 ## 👀 **Why ReflexOS?**
 
