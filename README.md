@@ -47,7 +47,7 @@ Windows Defender and Windows Update are removed from many different custom opera
 
 ### 🚀 More space
 Pre-installed applications and other insignificant components are removed with ReflexOS.
-Check out what else we have removed in our [FAQ](https://reflexos.heo-systems.net).
+Check out what else we have removed in our [FAQ](https://reflexos.heo-systems.net/docs/faq).
 
 ### ✅ More performance
 A few custom operating systems on the internet have made Windows incompatible with essential functionality like Bluetooth and Wi-Fi, among others.
