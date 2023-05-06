@@ -46,8 +46,8 @@ Note that ReflexOS cannot ensure the security for things outside the scope of Wi
 Windows Defender and Windows Update are removed from many different custom operating systems. We know that the majority of gamers are not particularly tech savvy and cannot manually update or maintain their computer secure, which can be a major security risk. Therefore, we remain to use those features to keep you safe.
 
 ### 🚀 More space
-Pre-installed applications and other insignificant components are removed with Atlas. Despite the possibility of compatibility issues, this significantly reduces the install size and makes your system more fluent. Therefore, some functionalities (such as Windows Defender) are stripped completely.
-Check out what else we have removed in our [FAQ](https://docs.atlasos.net/troubleshooting/removed-features).
+Pre-installed applications and other insignificant components are removed with ReflexOS.
+Check out what else we have removed in our [FAQ](https://reflexos.heo-systems.net).
 
 ### ✅ More performance
 Some tweaked systems on the internet have tweaked Windows too much, breaking compatibility for main features such as Bluetooth, Wi-Fi, and so on.
