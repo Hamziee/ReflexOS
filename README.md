@@ -66,6 +66,6 @@ Many custom Windows OSes distribute their systems by providing a tweaked ISO of 
 ReflexOS uses Powershell script to modifdy an existing Windows installation, so no need to install a custom Windows ISO. Installing ReflexOS on an outdated installation of Windows 10 or 11 is strongly discouraged!
 
 ## ⚠️ Disclaimer
-ReflexOS is **NOT** a pre-activated version of Windows. You **mMUST** use a valid key to activate Windows. Before buying a Windows 10/11 (Professional or Home) license, be sure the seller is trustworthy and the key is legitimate — no matter where you buy it.
+ReflexOS is **NOT** a pre-activated version of Windows. You **MUST** use a valid key to activate Windows. Before buying a Windows 10/11 (Professional or Home) license, be sure the seller is trustworthy and the key is legitimate — no matter where you buy it.
 
 ReflexOS is based on Microsoft Windows. By using Windows, you agree to [Microsoft's Terms of Service](https://www.microsoft.com/en-us/Useterms/Retail/Windows/10/UseTerms_Retail_Windows_10_English.htm).
