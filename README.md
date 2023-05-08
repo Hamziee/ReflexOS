@@ -9,7 +9,7 @@
       <img alt="Release Downloads" src="https://img.shields.io/github/downloads/Hamziee/ReflexOS/total?style=for-the-badge&logo=github&color=1A91FF" />
     </a>
   </p>
-<h4 align="center">Built on Windows. Made for Performance, with security.</h4>
+<h4 align="center">Made for Performance, with security.</h4>
 
 <p align="center">
   <a href="https://reflexos.heo-systems.net/">Website</a>
