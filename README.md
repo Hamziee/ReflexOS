@@ -21,8 +21,7 @@
 
 ## 🤔 **What is ReflexOS?**
 
-ReflexOS is a modified version of Windows 10 & Windows 11, which removes nearly all the drawbacks of Windows that negatively affect gaming performance.
-ReflexOS is also a good option to reduce system latency, network latency, input lag, and keep your system private while focusing on performance.
+ReflexOS is an collection of powershell scripts which improve performance of Windows 10 en Windows 11. How ReflexOS accomplish this goal is to remove all the unnecessary services and programs from Windows.
 You can learn more about ReflexOS on our official [website](https://reflexos.heo-systems.net).
 
 ## 📚 **Table of contents**
