@@ -69,12 +69,12 @@ ReflexOS is **NOT** a pre-activated version of Windows. You **MUST** use a valid
 
 ReflexOS is based on Microsoft Windows. By using Windows, you agree to [Microsoft's Terms of Service](https://www.microsoft.com/en-us/Useterms/Retail/Windows/10/UseTerms_Retail_Windows_10_English.htm).
 
-## ℹ Scripts Credits:
+## ℹ Script Credits:
   - Windows10Debloater by Sycnex
   - Win10 Initial Setup Script by Disassembler
   - The Ultimate Windows Utility by Chris Titus Tech
 
-### Scripts only on Windows 11:
+### Script only on Windows 11:
   - BloatyNosy by builtbybel
 
 
