@@ -3177,7 +3177,7 @@ reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Pe
 
 iwr -useb https://christitus.com/win | iex
 
-.\"C:\ReflexOS 11 (Alpha 0.2)\files\BloatyNosyApp 0.70.149.exe"
+& 'C:\ReflexOS 11 (Alpha 0.2)\files\BloatyNosy 0.70.149.exe'
 
 Write-Output "Press any key to reboot now"
 cmd /c 'pause>nul'
