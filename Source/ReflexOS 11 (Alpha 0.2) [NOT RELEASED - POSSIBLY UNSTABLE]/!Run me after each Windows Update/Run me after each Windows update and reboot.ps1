@@ -17,7 +17,7 @@ echo " "
 echo "Windows Update Script Credits:"
 echo "ReflexOS By Hamziee"
 echo "The Ultimate Windows Utility by Chris Titus Tech"
-echo "BloatyNosy by builtbybel"
+echo "BloatyNosy 0.70.149 by builtbybel"
 echo " "
 echo "Windows Update script will start in 10 seconds, close now if you want to cancel."
 Start-Sleep 10
@@ -48,7 +48,7 @@ Install-Module -Name WindowsOEMinformation
 
 $oemInfo = @{
     Manufacturer = 'ReflexOS'
-    Model = 'ReflexOS 10 (Alpha 0.1)'
+    Model = 'ReflexOS 11 (Alpha 0.2)'
     SupportUrl = 'http://reflexos.heo-systems.net/'
 }
 Set-WindowsOemInformation @oemInfo
@@ -71,7 +71,7 @@ public class Wallpaper
 "@
 Add-Type -TypeDefinition $setwallpapersrc
 
-[Wallpaper]::SetWallpaper("C:\ReflexOS 10 (Alpha 0.1)\img\ReflexOS Background.png")
+[Wallpaper]::SetWallpaper("C:\ReflexOS 11 (Alpha 0.2)\img\ReflexOS Background.png")
 
 # CSP registry path
 $RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
@@ -81,7 +81,7 @@ $LockScreenImageStatus = "LockScreenImageStatus"
 # CSP Status
 $StatusValue = "1"
 # Image to use
-$LockScreenImageValue = "C:\ReflexOS 10 (Alpha 0.1)\img\ReflexOS Lockscreen.png"  # Change as per your needs
+$LockScreenImageValue = "C:\ReflexOS 11 (Alpha 0.2)\img\ReflexOS Lockscreen.png"  # Change as per your needs
 ## Check if PersonalizationCSP registry exist and if not create it and add values, or just create the values under it.
 if(!(Test-Path $RegKeyPath)){
     New-Item -Path $RegKeyPath -Force | Out-Null
@@ -100,13 +100,13 @@ else {
 New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
 
-Copy-Item "C:\ReflexOS 10 (Alpha 0.1)\icons\User Account Pictures\*" "C:\ProgramData\Microsoft\User Account Pictures\" -force
+Copy-Item "C:\ReflexOS 11 (Alpha 0.2)\icons\User Account Pictures\*" "C:\ProgramData\Microsoft\User Account Pictures\" -force
 
 'sc stop "wsearch" && sc config "wsearch" start=disabled' | cmd
 
 iwr -useb https://christitus.com/win | iex
 
-.\"C:\ReflexOS 11 (Alpha 0.2)\files\BloatyNosyApp 0.70.149.exe"
+& 'C:\ReflexOS 11 (Alpha 0.2)\files\BloatyNosy 0.70.149.exe'
 
 Write-Output "Press any key to reboot now"
 cmd /c 'pause>nul'

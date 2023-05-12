@@ -1,5 +1,0 @@
-News App:Get-AppxPackage -AllUsers *BingNews* | Remove-AppxPackage
-Movies and TV:Get-AppxPackage -AllUsers *ZuneVideo* | Remove-AppxPackage
-MS Office:Get-AppxPackage -AllUsers *MicrosoftOfficeHub* | Remove-AppxPackage
-Help and tips:Get-AppxPackage -AllUsers *GetHelp* | Remove-AppxPackage
-OneDrive:Get-AppxPackage -AllUsers *OneDriveSync* | Remove-AppxPackage

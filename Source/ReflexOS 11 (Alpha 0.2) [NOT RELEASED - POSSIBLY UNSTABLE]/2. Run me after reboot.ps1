@@ -19,7 +19,7 @@ echo "ReflexOS By Hamziee"
 echo "Windows10Debloater by Sycnex"
 echo "Win10 Initial Setup Script by Disassembler"
 echo "The Ultimate Windows Utility by Chris Titus Tech"
-echo "BloatyNosy by builtbybel"
+echo "BloatyNosy 0.70.149 by builtbybel"
 echo " "
 echo "Install script will start in 10 seconds, close now if you want to cancel."
 Start-Sleep 10
