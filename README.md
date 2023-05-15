@@ -21,7 +21,7 @@
 
 ## 🤔 **What is ReflexOS?**
 
-ReflexOS is an collection of powershell scripts which improves performance of Windows 10 en Windows 11. How ReflexOS accomplishes this goal is to remove all the unnecessary services and programs from Windows.
+ReflexOS is an collection of powershell scripts which improves performance of Windows 10 and Windows 11. How ReflexOS accomplishes this goal is to remove all the unnecessary services and programs from Windows.
 You can learn more about ReflexOS on our official [website](https://reflexos.heo-systems.net).
 
 ## 📚 **Table of contents**
