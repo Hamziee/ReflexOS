@@ -3163,8 +3163,7 @@ public class Wallpaper
 "@
 Add-Type -TypeDefinition $setwallpapersrc
 
-[Wallpaper]::SetWallpaper("C:\ReflexOS 11 (Alpha 0.2)\img\ReflexOS Background.png") -confirm:$false -Force
-
+[Wallpaper]::SetWallpaper("C:\ReflexOS 11 (Alpha 0.2)\img\ReflexOS Background.png") 
 # CSP registry path
 $RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
 # CSP Registry key names
