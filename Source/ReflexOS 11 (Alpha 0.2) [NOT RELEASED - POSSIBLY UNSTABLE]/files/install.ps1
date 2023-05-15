@@ -1208,11 +1208,11 @@ Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\W
 # Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled"
 
 # Disable Lock screen
-# Write-Host "Disabling Lock screen..."
-# If (!(Test-Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization")) {
-# 	New-Item -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" | Out-Null
-# }
-# Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen" -Type DWord -Value 1
+ Write-Host "Disabling Lock screen..."
+ If (!(Test-Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization")) {
+ 	New-Item -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" | Out-Null
+ }
+ Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen" -Type DWord -Value 1
 
 # Enable Lock screen
 # Remove-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen"
@@ -1255,9 +1255,9 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 # Show Task View button
 # Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton"
 
-Show small icons in taskbar
-Write-Host "Showing small icons in taskbar..."
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarSmallIcons" -Type DWord -Value 1
+# Show small icons in taskbar
+# Write-Host "Showing small icons in taskbar..."
+# Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarSmallIcons" -Type DWord -Value 1
 
 # Show large icons in taskbar
 # Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarSmallIcons"
@@ -2052,67 +2052,7 @@ reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Pe
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t "REG_DWORD" /d "0" /f
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t "REG_DWORD" /d "0" /f
 
-Rename-Computer -NewName "ReflexOS" -Force
 
-Install-Module -Name WindowsOEMinformation
-
-$oemInfo = @{
-    Manufacturer = 'ReflexOS'
-    Model = 'ReflexOS 11 (Alpha 0.2)'
-    SupportUrl = 'http://reflexos.heo-systems.net/'
-}
-Set-WindowsOemInformation @oemInfo
-
-$setwallpapersrc = @"
-using System.Runtime.InteropServices;
-
-public class Wallpaper
-{
-  public const int SetDesktopWallpaper = 20;
-  public const int UpdateIniFile = 0x01;
-  public const int SendWinIniChange = 0x02;
-  [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-  private static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
-  public static void SetWallpaper(string path)
-  {
-    SystemParametersInfo(SetDesktopWallpaper, 0, path, UpdateIniFile | SendWinIniChange);
-  }
-}
-"@
-Add-Type -TypeDefinition $setwallpapersrc
-
-[Wallpaper]::SetWallpaper("C:\ReflexOS 11 (Alpha 0.2)\img\ReflexOS Background.png")
-
-# CSP registry path
-$RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
-# CSP Registry key names
-$LockScreenImagePath = "LockScreenImagePath"
-$LockScreenImageStatus = "LockScreenImageStatus"
-# CSP Status
-$StatusValue = "1"
-# Image to use
-$LockScreenImageValue = "C:\ReflexOS 11 (Alpha 0.2)\img\ReflexOS Lockscreen.png"  # Change as per your needs
-## Check if PersonalizationCSP registry exist and if not create it and add values, or just create the values under it.
-if(!(Test-Path $RegKeyPath)){
-    New-Item -Path $RegKeyPath -Force | Out-Null
-    # Allows for administrators to query the status of the lock screen image.
-    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImageStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
-    # Set the image to use as lock screen background.
-    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImagePath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-}
-else {
-    # Allows for administrators to query the status of the lock screen image.
-    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImageStatus -Value $value -PropertyType DWORD -Force | Out-Null
-    # Set the image to use as lock screen background.
-    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImagePath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-}
-
-New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
-
-Copy-Item "C:\ReflexOS 11 (Alpha 0.2)\icons\User Account Pictures\*" "C:\ProgramData\Microsoft\User Account Pictures\" -force
-
-'sc stop "wsearch" && sc config "wsearch" start=disabled' | cmd
 
 ##########
 # Privacy Settings
@@ -3145,6 +3085,70 @@ reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes" /
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t "REG_DWORD" /d "0" /f
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t "REG_DWORD" /d "0" /f
+
+# ReflexOS Windows Customization #
+
+Rename-Computer -NewName "ReflexOS" -Force
+
+Install-Module -Name WindowsOEMinformation
+
+$oemInfo = @{
+    Manufacturer = 'ReflexOS'
+    Model = 'ReflexOS 11 (Alpha 0.2)'
+    SupportUrl = 'http://reflexos.heo-systems.net/'
+}
+Set-WindowsOemInformation @oemInfo
+
+$setwallpapersrc = @"
+using System.Runtime.InteropServices;
+
+public class Wallpaper
+{
+  public const int SetDesktopWallpaper = 20;
+  public const int UpdateIniFile = 0x01;
+  public const int SendWinIniChange = 0x02;
+  [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+  private static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+  public static void SetWallpaper(string path)
+  {
+    SystemParametersInfo(SetDesktopWallpaper, 0, path, UpdateIniFile | SendWinIniChange);
+  }
+}
+"@
+Add-Type -TypeDefinition $setwallpapersrc
+
+[Wallpaper]::SetWallpaper("C:\ReflexOS 11 (Alpha 0.2)\img\ReflexOS Background.png")
+
+# CSP registry path
+$RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
+# CSP Registry key names
+$LockScreenImagePath = "LockScreenImagePath"
+$LockScreenImageStatus = "LockScreenImageStatus"
+# CSP Status
+$StatusValue = "1"
+# Image to use
+$LockScreenImageValue = "C:\ReflexOS 11 (Alpha 0.2)\img\ReflexOS Lockscreen.png"  # Change as per your needs
+## Check if PersonalizationCSP registry exist and if not create it and add values, or just create the values under it.
+if(!(Test-Path $RegKeyPath)){
+    New-Item -Path $RegKeyPath -Force | Out-Null
+    # Allows for administrators to query the status of the lock screen image.
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImageStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
+    # Set the image to use as lock screen background.
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImagePath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
+}
+else {
+    # Allows for administrators to query the status of the lock screen image.
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImageStatus -Value $value -PropertyType DWORD -Force | Out-Null
+    # Set the image to use as lock screen background.
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImagePath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
+}
+
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
+
+Copy-Item "C:\ReflexOS 11 (Alpha 0.2)\icons\User Account Pictures\*" "C:\ProgramData\Microsoft\User Account Pictures\" -force
+
+'sc stop "wsearch" && sc config "wsearch" start=disabled' | cmd
 
 iwr -useb https://christitus.com/win | iex
 

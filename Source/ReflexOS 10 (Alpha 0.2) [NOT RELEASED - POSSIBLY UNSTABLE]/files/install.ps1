@@ -1,31 +1,3 @@
-echo " "
-echo " _____    ______   ______   _        ______  __   __   ____     _____ "
-echo "|  __ \  |  ____| |  ____| | |      |  ____| \ \ / /  / __ \   / ____|"
-echo "| |__) | | |__    | |__    | |      | |__     \ V /  | |  | | | (___  "
-echo "|  _  /  |  __|   |  __|   | |      |  __|     > <   | |  | |  \___ \ "
-echo "| | \ \  | |____  | |      | |____  | |____   / . \  | |__| |  ____) |"
-echo "|_|  \_\ |______| |_|      |______| |______| /_/ \_\  \____/  |_____/ "
-echo " "
-echo " "
-echo "             _      _____  _    _             ___        ___  "
-echo "       /\   | |    |  __ \| |  | |   /\      / _ \      |__ \ "
-echo "      /  \  | |    | |__) | |__| |  /  \    | | | |        ) |"
-echo "     / /\ \ | |    |  ___/|  __  | / /\ \   | | | |       / / "
-echo "    / ____ \| |____| |    | |  | |/ ____ \  | |_| |  _   / /_ "
-echo "   /_/    \_\______|_|    |_|  |_/_/    \_\  \___/  (_) |____|"
-echo " "
-echo "Install Script Credits:"
-echo "ReflexOS By Hamziee"
-echo "Windows10Debloater by Sycnex"
-echo "Win10 Initial Setup Script by Disassembler"
-echo "The Ultimate Windows Utility by Chris Titus Tech"
-echo " "
-echo "Install script will start in 10 seconds, close now if you want to cancel."
-Start-Sleep 10
-echo "Starting..."
-Start-Sleep 2
-echo " "
-echo " "
 #This will self elevate the script so with a UAC prompt since this script needs to be run as an Administrator in order to function properly.
 If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]'Administrator')) {
     Write-Host "You didn't run this script as an Administrator. This script will self elevate to run as an Administrator and continue."
@@ -1236,11 +1208,11 @@ Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\W
 # Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\PushNotifications" -Name "ToastEnabled"
 
 # Disable Lock screen
-# Write-Host "Disabling Lock screen..."
-# If (!(Test-Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization")) {
-# 	New-Item -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" | Out-Null
-# }
-# Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen" -Type DWord -Value 1
+ Write-Host "Disabling Lock screen..."
+ If (!(Test-Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization")) {
+ 	New-Item -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" | Out-Null
+ }
+ Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen" -Type DWord -Value 1
 
 # Enable Lock screen
 # Remove-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Personalization" -Name "NoLockScreen"
@@ -1283,9 +1255,9 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 # Show Task View button
 # Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton"
 
-Show small icons in taskbar
-Write-Host "Showing small icons in taskbar..."
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarSmallIcons" -Type DWord -Value 1
+# Show small icons in taskbar
+# Write-Host "Showing small icons in taskbar..."
+# Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarSmallIcons" -Type DWord -Value 1
 
 # Show large icons in taskbar
 # Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarSmallIcons"
@@ -2080,67 +2052,7 @@ reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Pe
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t "REG_DWORD" /d "0" /f
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t "REG_DWORD" /d "0" /f
 
-Rename-Computer -NewName "ReflexOS" -Force
 
-Install-Module -Name WindowsOEMinformation
-
-$oemInfo = @{
-    Manufacturer = 'ReflexOS'
-    Model = 'ReflexOS 10 (Alpha 0.2)'
-    SupportUrl = 'http://reflexos.heo-systems.net/'
-}
-Set-WindowsOemInformation @oemInfo
-
-$setwallpapersrc = @"
-using System.Runtime.InteropServices;
-
-public class Wallpaper
-{
-  public const int SetDesktopWallpaper = 20;
-  public const int UpdateIniFile = 0x01;
-  public const int SendWinIniChange = 0x02;
-  [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-  private static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
-  public static void SetWallpaper(string path)
-  {
-    SystemParametersInfo(SetDesktopWallpaper, 0, path, UpdateIniFile | SendWinIniChange);
-  }
-}
-"@
-Add-Type -TypeDefinition $setwallpapersrc
-
-[Wallpaper]::SetWallpaper("C:\ReflexOS 10 (Alpha 0.2)\img\ReflexOS Background.png")
-
-# CSP registry path
-$RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
-# CSP Registry key names
-$LockScreenImagePath = "LockScreenImagePath"
-$LockScreenImageStatus = "LockScreenImageStatus"
-# CSP Status
-$StatusValue = "1"
-# Image to use
-$LockScreenImageValue = "C:\ReflexOS 10 (Alpha 0.2)\img\ReflexOS Lockscreen.png"  # Change as per your needs
-## Check if PersonalizationCSP registry exist and if not create it and add values, or just create the values under it.
-if(!(Test-Path $RegKeyPath)){
-    New-Item -Path $RegKeyPath -Force | Out-Null
-    # Allows for administrators to query the status of the lock screen image.
-    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImageStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
-    # Set the image to use as lock screen background.
-    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImagePath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-}
-else {
-    # Allows for administrators to query the status of the lock screen image.
-    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImageStatus -Value $value -PropertyType DWORD -Force | Out-Null
-    # Set the image to use as lock screen background.
-    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImagePath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-}
-
-New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
-
-Copy-Item "C:\ReflexOS 10 (Alpha 0.2)\icons\User Account Pictures\*" "C:\ProgramData\Microsoft\User Account Pictures\" -force
-
-'sc stop "wsearch" && sc config "wsearch" start=disabled' | cmd
 
 ##########
 # Privacy Settings
@@ -3174,8 +3086,68 @@ reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Pe
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t "REG_DWORD" /d "0" /f
 reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t "REG_DWORD" /d "0" /f
 
-iwr -useb https://christitus.com/win | iex
+# ReflexOS Windows Customization #
 
-Write-Output "Press any key to reboot now"
-cmd /c 'pause>nul'
-Restart-Computer
+Rename-Computer -NewName "ReflexOS" -Force
+
+Install-Module -Name WindowsOEMinformation
+
+$oemInfo = @{
+    Manufacturer = 'ReflexOS'
+    Model = 'ReflexOS 10 (Alpha 0.2)'
+    SupportUrl = 'http://reflexos.heo-systems.net/'
+}
+Set-WindowsOemInformation @oemInfo
+
+$setwallpapersrc = @"
+using System.Runtime.InteropServices;
+
+public class Wallpaper
+{
+  public const int SetDesktopWallpaper = 20;
+  public const int UpdateIniFile = 0x01;
+  public const int SendWinIniChange = 0x02;
+  [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+  private static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+  public static void SetWallpaper(string path)
+  {
+    SystemParametersInfo(SetDesktopWallpaper, 0, path, UpdateIniFile | SendWinIniChange);
+  }
+}
+"@
+Add-Type -TypeDefinition $setwallpapersrc
+
+[Wallpaper]::SetWallpaper("C:\ReflexOS 10 (Alpha 0.2)\img\ReflexOS Background.png")
+
+# CSP registry path
+$RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
+# CSP Registry key names
+$LockScreenImagePath = "LockScreenImagePath"
+$LockScreenImageStatus = "LockScreenImageStatus"
+# CSP Status
+$StatusValue = "1"
+# Image to use
+$LockScreenImageValue = "C:\ReflexOS 10 (Alpha 0.2)\img\ReflexOS Lockscreen.png"  # Change as per your needs
+## Check if PersonalizationCSP registry exist and if not create it and add values, or just create the values under it.
+if(!(Test-Path $RegKeyPath)){
+    New-Item -Path $RegKeyPath -Force | Out-Null
+    # Allows for administrators to query the status of the lock screen image.
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImageStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
+    # Set the image to use as lock screen background.
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImagePath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
+}
+else {
+    # Allows for administrators to query the status of the lock screen image.
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImageStatus -Value $value -PropertyType DWORD -Force | Out-Null
+    # Set the image to use as lock screen background.
+    New-ItemProperty -Path $RegKeyPath -Name $LockScreenImagePath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
+}
+
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DisableAcrylicBackgroundOnLogon" -Value "1" -PropertyType DWord -Force
+
+Copy-Item "C:\ReflexOS 10 (Alpha 0.2)\icons\User Account Pictures\*" "C:\ProgramData\Microsoft\User Account Pictures\" -force
+
+'sc stop "wsearch" && sc config "wsearch" start=disabled' | cmd
+
+iwr -useb https://christitus.com/win | iex
