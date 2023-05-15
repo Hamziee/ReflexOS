@@ -3088,16 +3088,16 @@ reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Pe
 
 # ReflexOS Windows Customization #
 
-Rename-Computer -NewName "ReflexOS" -Force
+Rename-Computer -NewName "ReflexOS" -confirm:$false -Force
 
-Install-Module -Name WindowsOEMinformation
+Install-Module -Name WindowsOEMinformation -confirm:$false -Force
 
 $oemInfo = @{
     Manufacturer = 'ReflexOS'
     Model = 'ReflexOS 10 (Alpha 0.2)'
     SupportUrl = 'http://reflexos.heo-systems.net/'
 }
-Set-WindowsOemInformation @oemInfo
+Set-WindowsOemInformation @oemInfo -confirm:$false -Force
 
 $setwallpapersrc = @"
 using System.Runtime.InteropServices;
@@ -3117,7 +3117,7 @@ public class Wallpaper
 "@
 Add-Type -TypeDefinition $setwallpapersrc
 
-[Wallpaper]::SetWallpaper("C:\ReflexOS 10 (Alpha 0.2)\img\ReflexOS Background.png")
+[Wallpaper]::SetWallpaper("C:\ReflexOS 10 (Alpha 0.2)\img\ReflexOS Background.png") -confirm:$false -Force
 
 # CSP registry path
 $RegKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP"
